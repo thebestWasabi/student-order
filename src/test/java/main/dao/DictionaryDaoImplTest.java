@@ -21,21 +21,7 @@ public class DictionaryDaoImplTest {
 
     @BeforeAll
     public static void startUp() throws Exception {
-        URL url1 = DictionaryDaoImpl.class.getClassLoader().getResource("student-project.sql");
-        URL url2 = DictionaryDaoImpl.class.getClassLoader().getResource("student_data.sql");
-
-        List<String> strings1 = Files.readAllLines(Paths.get(url1.toURI()));
-        String sql1 = strings1.stream().collect(Collectors.joining());
-
-        List<String> strings2 = Files.readAllLines(Paths.get(url2.toURI()));
-        String sql2 = strings2.stream().collect(Collectors.joining());
-
-        try (Connection connection = ConnectionBuilder.getConnection();
-             Statement statement = connection.createStatement())
-        {
-            statement.executeUpdate(sql1);
-            statement.executeUpdate(sql2);
-        }
+        DataBaseInit.startUp();
     }
 
     @Test

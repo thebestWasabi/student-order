@@ -158,10 +158,8 @@ public class StudentOrderDaoImpl implements StudentOrderDao {
 
     private List<StudentOrder> getStudentOrdersOneSelect() throws DaoException {
         List<StudentOrder> result = new LinkedList<>();
-
         try (Connection connection = getConnection();
              PreparedStatement statement = connection.prepareStatement(SELECT_ORDERS_FULL)) {
-
             Map<Long, StudentOrder> maps = new HashMap<>();
             statement.setInt(1, StudentOrderStatus.START.ordinal());
             int limit = Integer.parseInt(Config.getProperty(Config.DB_LIMIT));
@@ -192,10 +190,8 @@ public class StudentOrderDaoImpl implements StudentOrderDao {
 
     private List<StudentOrder> getStudentOrdersTwoSelect() throws DaoException {
         List<StudentOrder> result = new LinkedList<>();
-
         try (Connection connection = getConnection();
              PreparedStatement statement = connection.prepareStatement(SELECT_ORDERS)) {
-
             statement.setInt(1, StudentOrderStatus.START.ordinal());
             statement.setInt(2, Integer.parseInt(Config.getProperty(Config.DB_LIMIT)));
             ResultSet resultSet = statement.executeQuery();

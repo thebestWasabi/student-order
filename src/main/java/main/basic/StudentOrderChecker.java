@@ -1,6 +1,8 @@
 package main.basic;
 
 import main.answer.AnswerChildren;
+import main.dao.StudentOrderDaoImpl;
+import main.exception.DaoException;
 import main.register.AnswerCityRegister;
 import main.answer.AnswerStudent;
 import main.answer.AnswerWedding;
@@ -36,19 +38,18 @@ public class StudentOrderChecker {
     }
 
     public void checkAll() {
-        List<StudentOrder> studentOrderList = readStudentOrders();
-        for (StudentOrder studentOrder : studentOrderList) {
-            checkOneOrder(studentOrder);
+        try {
+            List<StudentOrder> studentOrderList = readStudentOrders();
+            for (StudentOrder studentOrder : studentOrderList) {
+                checkOneOrder(studentOrder);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
 
-    public List<StudentOrder> readStudentOrders() {
-        List<StudentOrder> studentOrderList = new LinkedList<>();
-        for (int i = 0; i < 5; i++) {
-            StudentOrder studentOrder = SaveStudentOrder.buildStudentOrder(i);
-            studentOrderList.add(studentOrder);
-        }
-        return studentOrderList;
+    public List<StudentOrder> readStudentOrders() throws DaoException {
+        return new StudentOrderDaoImpl().getStudentOrders();
     }
 
     public void checkOneOrder(StudentOrder studentOrder) {
