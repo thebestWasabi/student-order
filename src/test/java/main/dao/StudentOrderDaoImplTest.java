@@ -2,6 +2,7 @@ package main.dao;
 
 import main.domain.*;
 import main.exception.DaoException;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -19,6 +20,18 @@ class StudentOrderDaoImplTest {
     void saveStudentOrder() throws DaoException {
         StudentOrder studentOrder = buildStudentOrder(10);
         Long id = new StudentOrderDaoImpl().saveStudentOrder(studentOrder);
+    }
+
+    @Test
+    public void saveStudentError() {
+        try {
+            StudentOrder studentOrder = buildStudentOrder(10);
+            studentOrder.getHusband().setSurName(null);
+            Long id = new StudentOrderDaoImpl().saveStudentOrder(studentOrder);
+            Assertions.fail("Error should be");
+        } catch (DaoException dex) {
+
+        }
     }
 
     @Test
