@@ -17,6 +17,20 @@ public class StudentOrder {
     private RegisterOffice marriageOffice;
     private LocalDate marriageDate;
 
+    @Override
+    public String toString() {
+        return "StudentOrder{" +
+                "studentOrderId=" + studentOrderId +
+                ", studentOrderStatus=" + studentOrderStatus +
+                ", studentOrderDate=" + studentOrderDate +
+                ", husband=" + husband +
+                ", wife=" + wife +
+                ", children=" + children +
+                ", marriageCertificateId='" + marriageCertificateId + '\'' +
+                ", marriageOffice=" + marriageOffice +
+                ", marriageDate=" + marriageDate +
+                '}';
+    }
 
     public long getStudentOrderId() {
         return studentOrderId;

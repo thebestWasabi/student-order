@@ -18,6 +18,18 @@ public class Adult extends Person {
         super(surName, givenName, patronymic, dateOfBirth);
     }
 
+    @Override
+    public String toString() {
+        return "Adult{" +
+                "passportSeries='" + passportSeries + '\'' +
+                ", passportNumber='" + passportNumber + '\'' +
+                ", passportIssueDate=" + passportIssueDate +
+                ", passportDepartment=" + passportDepartment +
+                ", university=" + university +
+                ", studentId='" + studentId + '\'' +
+                "} " + super.toString();
+    }
+
     public String getPassportSeries() {
         return passportSeries;
     }

@@ -3,6 +3,8 @@ package main.dao;
 import main.config.Config;
 import main.domain.*;
 import main.exception.DaoException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -14,6 +16,8 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class StudentOrderDaoImpl implements StudentOrderDao {
+
+    private static final Logger logger = LoggerFactory.getLogger(StudentOrderDaoImpl.class);
 
     private static final String INSERT_ORDER = "INSERT INTO jc_student_order(" +
             "student_order_status, student_order_date, h_sur_name, " +
@@ -68,6 +72,8 @@ public class StudentOrderDaoImpl implements StudentOrderDao {
     public Long saveStudentOrder(StudentOrder studentOrder) throws DaoException {
         long result = -1L;
 
+        logger.debug("SO:{}", studentOrder);
+
         try (Connection connection = getConnection();
              PreparedStatement statement = connection.prepareStatement(INSERT_ORDER, new String[]{"student_order_id"})) {
 
@@ -99,6 +105,7 @@ public class StudentOrderDaoImpl implements StudentOrderDao {
                 throw ex;
             }
         } catch (SQLException ex) {
+            logger.error(ex.getMessage(), ex);
             throw new DaoException(ex);
         }
         return result;
@@ -183,6 +190,7 @@ public class StudentOrderDaoImpl implements StudentOrderDao {
             }
             resultSet.close();
         } catch (SQLException ex) {
+            logger.error(ex.getMessage(), ex);
             throw new DaoException(ex);
         }
         return result;
@@ -203,6 +211,7 @@ public class StudentOrderDaoImpl implements StudentOrderDao {
             findChildren(connection, result);
             resultSet.close();
         } catch (SQLException ex) {
+            logger.error(ex.getMessage(), ex);
             throw new DaoException(ex);
         }
         return result;

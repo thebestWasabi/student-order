@@ -15,6 +15,15 @@ public class Child extends Person {
         super(surName, givenName, patronymic, dateOfBirth);
     }
 
+    @Override
+    public String toString() {
+        return "Child{" +
+                "certificateNumber='" + certificateNumber + '\'' +
+                ", issueDate=" + issueDate +
+                ", issueDepartment=" + issueDepartment +
+                "} " + super.toString();
+    }
+
     public String getCertificateNumber() {
         return certificateNumber;
     }

@@ -20,6 +20,17 @@ public abstract class Person {
         this.dateOfBirth = dateOfBirth;
     }
 
+    @Override
+    public String toString() {
+        return "Person{" +
+                "surName='" + surName + '\'' +
+                ", givenName='" + givenName + '\'' +
+                ", patronymic='" + patronymic + '\'' +
+                ", dateOfBirth=" + dateOfBirth +
+                ", address=" + address +
+                '}';
+    }
+
     public String getSurName() {
         return surName;
     }

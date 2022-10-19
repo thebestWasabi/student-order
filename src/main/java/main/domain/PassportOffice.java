@@ -15,6 +15,15 @@ public class PassportOffice {
         this.officeName = officeName;
     }
 
+    @Override
+    public String toString() {
+        return "PassportOffice{" +
+                "officeId=" + officeId +
+                ", officeAreaId='" + officeAreaId + '\'' +
+                ", officeName='" + officeName + '\'' +
+                '}';
+    }
+
     public Long getOfficeId() {
         return officeId;
     }

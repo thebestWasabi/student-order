@@ -13,6 +13,14 @@ public class Street {
         this.streetName = streetName;
     }
 
+    @Override
+    public String toString() {
+        return "Street{" +
+                "streetCode=" + streetCode +
+                ", streetName='" + streetName + '\'' +
+                '}';
+    }
+
     public Long getStreetCode() {
         return streetCode;
     }
